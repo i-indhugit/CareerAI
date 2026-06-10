@@ -50,9 +50,9 @@ export default function Footer({ setActivePage, openDemo }: FooterProps) {
           <h4 className="text-sm font-semibold text-white uppercase tracking-wider">Quick Links</h4>
           <ul className="flex flex-col gap-2.5 text-sm">
             <li><button onClick={() => handleNavClick('home')} className="hover:text-primary-500 transition-colors">Home</button></li>
-            <li><button onClick={() => handleNavClick('about')} className="hover:text-primary-500 transition-colors">About Us</button></li>
+            <li><button onClick={() => handleNavClick('features')} className="hover:text-primary-500 transition-colors">Features</button></li>
             <li><button onClick={() => handleNavClick('services')} className="hover:text-primary-500 transition-colors">Services</button></li>
-            <li><button onClick={() => handleNavClick('portfolio')} className="hover:text-primary-500 transition-colors">Success Stories</button></li>
+            <li><button onClick={() => handleNavClick('about')} className="hover:text-primary-500 transition-colors">About Us</button></li>
             <li><button onClick={() => handleNavClick('contact')} className="hover:text-primary-500 transition-colors">Contact</button></li>
           </ul>
         </div>
@@ -92,9 +92,12 @@ export default function Footer({ setActivePage, openDemo }: FooterProps) {
       {/* Credit and Copyright footer */}
       <div className="border-t border-slate-900 bg-slate-950/60 py-8">
         <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-slate-600">
-            &copy; 2026 CareerAI. All Rights Reserved.
-          </p>
+          <div className="flex flex-wrap items-center gap-4 text-xs text-slate-600">
+            <span>&copy; 2026 CareerAI. All Rights Reserved.</span>
+            <button onClick={() => handleNavClick('privacy')} className="hover:text-slate-400 transition-colors">Privacy Policy</button>
+            <button onClick={() => handleNavClick('terms')} className="hover:text-slate-400 transition-colors">Terms of Service</button>
+            <button onClick={() => handleNavClick('faq')} className="hover:text-slate-400 transition-colors">FAQ</button>
+          </div>
           <div className="flex items-center gap-1.5 text-xs text-slate-500 font-medium">
             <span>Designed & Developed by</span>
             <span className="text-primary-500 font-semibold tracking-wide hover:text-primary-400 transition-colors cursor-pointer">

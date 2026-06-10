@@ -32,6 +32,13 @@ import Newsletter from './sections/Newsletter';
 import DashboardSection from './sections/DashboardSection';
 import AdminPanel from './sections/AdminPanel';
 
+// New Pages
+import FeaturesPage from './sections/FeaturesPage';
+import FAQPage from './sections/FAQPage';
+import PrivacyPolicy from './sections/PrivacyPolicy';
+import TermsOfService from './sections/TermsOfService';
+import NotFoundPage from './sections/NotFoundPage';
+
 export default function App() {
   const { isAuthenticated, isAdmin, loading } = useAuth();
   const navigate = useNavigate();
@@ -155,6 +162,22 @@ export default function App() {
             </>
           } />
 
+          <Route path="/features" element={
+            <FeaturesPage openDemo={openDemo} />
+          } />
+
+          <Route path="/faq" element={
+            <FAQPage />
+          } />
+
+          <Route path="/privacy" element={
+            <PrivacyPolicy />
+          } />
+
+          <Route path="/terms" element={
+            <TermsOfService />
+          } />
+
           <Route path="/portfolio" element={
             <>
               <PortfolioShowcase />
@@ -184,8 +207,8 @@ export default function App() {
             </AdminRoute>
           } />
 
-          {/* Catch-all Redirect */}
-          <Route path="*" element={<Navigate to="/" replace />} />
+          {/* Catch-all 404 */}
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>
 

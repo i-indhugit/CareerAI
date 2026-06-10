@@ -25,9 +25,10 @@ export default function Navbar({ activePage, setActivePage, openDemo, openAuth }
   // Base links
   const navLinks = [
     { id: 'home', label: 'Home' },
-    { id: 'about', label: 'About' },
+    { id: 'features', label: 'Features' },
     { id: 'services', label: 'Services' },
-    { id: 'portfolio', label: 'Success Stories' },
+    { id: 'about', label: 'About' },
+    { id: 'faq', label: 'FAQ' },
     { id: 'contact', label: 'Contact' }
   ];
 
