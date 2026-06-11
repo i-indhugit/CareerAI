@@ -61,7 +61,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         }
 
         // Listen for changes
-        const { data } = supabase.auth.onAuthStateChange(async (event, session) => {
+        const { data } = supabase.auth.onAuthStateChange(async (event: any, session: any) => {
           if (session) {
             setToken(session.access_token);
             try {

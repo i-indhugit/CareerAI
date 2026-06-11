@@ -384,7 +384,7 @@ export const apiService = {
       if (error) throw new Error(error.message);
       
       // Map back database names to frontend names
-      return data.map(item => ({
+      return data.map((item: any) => ({
         id: item.id,
         userId: item.user_id,
         answers: item.answers,
@@ -417,7 +417,7 @@ export const apiService = {
 
       if (error) throw new Error(error.message);
       
-      return data.map(item => ({
+      return data.map((item: any) => ({
         id: item.id,
         userId: item.user_id,
         careerId: item.career_id,
@@ -592,7 +592,7 @@ export const apiService = {
       const careerCount: Record<string, number> = {};
       let totalScoresSum = 0;
 
-      assessments?.forEach(a => {
+      assessments?.forEach((a: any) => {
         const cat = a.top_match?.category || 'Unknown';
         categoriesCount[cat] = (categoriesCount[cat] || 0) + 1;
 
@@ -615,7 +615,7 @@ export const apiService = {
       // Group signups timeline by date
       const { data: usersList } = await supabase.from('users').select('created_at');
       const signupsByDate: Record<string, number> = {};
-      usersList?.forEach(u => {
+      usersList?.forEach((u: any) => {
         const d = u.created_at.split('T')[0];
         signupsByDate[d] = (signupsByDate[d] || 0) + 1;
       });
