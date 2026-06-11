@@ -1,6 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { apiService } from '../services/api';
-import { supabase, isSupabaseConfigured } from '../services/supabase';
 
 interface UserProfile {
   id: string;
@@ -34,80 +33,31 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [loading, setLoading] = useState<boolean>(true);
   const [welcomeBackMessage, setWelcomeBackMessage] = useState<string | null>(null);
 
-  // Initialize auth session & subscribe to real-time status shifts
+  // Initialize auth session
   useEffect(() => {
-    let authListener: any = null;
-
     const initAuth = async () => {
-      if (isSupabaseConfigured) {
-        // Fetch current session
-        const { data: { session } } = await supabase.auth.getSession();
-        if (session) {
-          try {
-            setToken(session.access_token);
-            const profile = await apiService.getProfile();
-            setUser(profile);
-            
-            // AI Memory Check
-            const history = await apiService.getAssessments();
-            if (history && history.length > 0) {
-              setWelcomeBackMessage(
-                `Welcome back, ${profile.name}! Based on your previous assessments, we have loaded your persistent recommendations and skill roadmaps.`
-              );
-            }
-          } catch (e) {
-            console.error('Error loading Supabase profile:', e);
+      const savedToken = localStorage.getItem('careerai_auth_token');
+      if (savedToken) {
+        try {
+          setToken(savedToken);
+          const profile = await apiService.getProfile();
+          setUser(profile as UserProfile);
+          
+          const history = await apiService.getAssessments();
+          if (history && history.length > 0) {
+            setWelcomeBackMessage(
+              `Welcome back, ${profile.name}! Based on your previous assessments, we have loaded your persistent recommendations and skill roadmaps.`
+            );
           }
-        }
-
-        // Listen for changes
-        const { data } = supabase.auth.onAuthStateChange(async (event: any, session: any) => {
-          if (session) {
-            setToken(session.access_token);
-            try {
-              const profile = await apiService.getProfile();
-              setUser(profile);
-            } catch (e) {
-              console.error('Error loading profile on auth state change:', e);
-            }
-          } else {
-            setUser(null);
-            setToken(null);
-            setWelcomeBackMessage(null);
-          }
-        });
-        authListener = data.subscription;
-      } else {
-        // Local storage mock flow
-        const savedToken = localStorage.getItem('careerai_auth_token');
-        if (savedToken) {
-          try {
-            setToken(savedToken);
-            const profile = await apiService.getProfile();
-            setUser(profile);
-            
-            const history = await apiService.getAssessments();
-            if (history && history.length > 0) {
-              setWelcomeBackMessage(
-                `Welcome back, ${profile.name}! Based on your previous assessments, we have loaded your persistent recommendations and skill roadmaps.`
-              );
-            }
-          } catch (e) {
-            console.error('Failed to load profile on mount:', e);
-            localStorage.removeItem('careerai_auth_token');
-          }
+        } catch (e) {
+          console.error('Failed to load profile on mount:', e);
+          localStorage.removeItem('careerai_auth_token');
         }
       }
       setLoading(false);
     };
 
     initAuth();
-
-    return () => {
-      if (authListener) {
-        authListener.unsubscribe();
-      }
-    };
   }, []);
 
   const handleLogin = async (email: string, password: string) => {
@@ -115,7 +65,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     try {
       const data = await apiService.login(email, password);
       setToken(data.token);
-      setUser(data.user);
+      setUser(data.user as any);
       
       const history = await apiService.getAssessments();
       if (history && history.length > 0) {
@@ -135,7 +85,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     try {
       const data = await apiService.register(name, email, password);
       setToken(data.token);
-      setUser(data.user);
+      setUser(data.user as any);
       setWelcomeBackMessage(null);
     } catch (error) {
       throw error;
