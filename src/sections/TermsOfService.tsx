@@ -44,7 +44,7 @@ export default function TermsOfService() {
             <HelpCircle className="w-5 h-5 text-primary-600 shrink-0" /> 3. Open-Source Contributions
           </h2>
           <p>
-            As a platform built entirely on free and open-source stacks (React, Vite, Supabase, Tailwind, Recharts), you are free to inspect, fork, or modify the layout code for personal portfolio or academic purposes.
+            As a platform built entirely on free and open-source stacks (React, Vite, Tailwind, Recharts), you are free to inspect, fork, or modify the layout code for personal portfolio or academic purposes.
           </p>
         </section>
 

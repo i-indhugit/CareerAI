@@ -26,7 +26,7 @@ export default function PrivacyPolicy() {
             <Lock className="w-5 h-5 text-primary-600 shrink-0" /> 1. Data Collection & Security
           </h2>
           <p>
-            At CareerAI, we value your privacy above all. We collect and store minimal data required to build user accounts, track assessment answers, and display analytics reports. When connected to Supabase databases, all transfers are encrypted with HTTPS protocols and records are restricted via Postgres Row-Level Security policies.
+            At CareerAI, we value your privacy above all. All profiles, assessments, and saved reports are stored strictly in your browser\'s local storage. No data is sent to external databases or servers, ensuring complete client-side sandboxing, data sovereignty, and offline-first privacy.
           </p>
         </section>
 

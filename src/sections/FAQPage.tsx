@@ -37,12 +37,12 @@ export default function FAQPage() {
     {
       category: 'security',
       q: 'Is my data secure?',
-      a: 'Yes. User security and confidentiality are absolute priorities. If you use a live database (Supabase), all uploads and reports are protected by Row-Level Security (RLS) policies. In Local Demo Mode, your profiles and answers remain strictly stored in your own local browser\'s localStorage.'
+      a: 'Yes. User security and confidentiality are absolute priorities. All of your profiles, assessments, and saved reports are stored strictly in your own local browser\'s localStorage. Your data never leaves your device and is not shared with any third party.'
     },
     {
       category: 'security',
       q: 'How is user authentication managed?',
-      a: 'Authentication is powered securely through Supabase Auth (utilizing JWT tokens and cookies). In local demo mode, sessions are simulated locally through mock local credentials to allow testing of pages without a database backend.'
+      a: 'Authentication is powered entirely through a secure in-browser Demo Authentication system. Credentials and sessions are managed directly using localStorage databases to allow full, instant testing of pages without any external network dependency.'
     }
   ];
 

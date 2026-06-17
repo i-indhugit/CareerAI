@@ -37,14 +37,14 @@ export default function FeaturesPage({ openDemo }: { openDemo: (tab: string) => 
     {
       icon: Shield,
       title: 'Enterprise-Grade Security',
-      desc: 'Row-Level Security policies and secure cookies protect your records. Zero sharing or unauthorized redistribution of CVs.',
+      desc: 'Local browser-only data isolation and encryption safeguards protect your records. Zero sharing or unauthorized redistribution of CVs.',
       color: 'text-rose-600 bg-rose-50 border-rose-100',
       tag: 'Security'
     },
     {
       icon: Zap,
-      title: 'Instant Local Fallback',
-      desc: 'Even without live Supabase database keys, the app works flawlessly out of the box in Local Demo Mode via localStorage.',
+      title: 'Instant Local Storage',
+      desc: 'No external network connection required: the app runs entirely out of the box in Demo Mode via browser localStorage.',
       color: 'text-sky-600 bg-sky-50 border-sky-100',
       tag: 'Developer Experience'
     }
